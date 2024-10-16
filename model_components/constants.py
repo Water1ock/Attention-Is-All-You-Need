@@ -1,1 +1,1 @@
-d_model = 512
+D_MODEL = 512
