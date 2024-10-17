@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from add_and_norm import AddAndNorm
+from model_components.add_and_norm import AddAndNorm
 
 
 class ResidualConnection(nn.Module):

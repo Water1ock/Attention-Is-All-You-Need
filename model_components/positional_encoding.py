@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import math
-from constants import POSITIONAL_SCALE
+from model_components.constants import POSITIONAL_SCALE
 
 
 class PositionalEncoding(nn.Module):
