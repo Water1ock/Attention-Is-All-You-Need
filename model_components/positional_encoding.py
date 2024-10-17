@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from .constants import POSITIONAL_SCALE
+from constants import POSITIONAL_SCALE
 
 
 class PositionalEncoding(nn.Module):
