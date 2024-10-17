@@ -15,8 +15,8 @@ class PositionalEncoding(nn.Module):
         position = torch.arange(0, sequence_length, dtype=torch.float).unsqueeze(1)
         div_term = torch.exp(torch.arange(0, d_model, 2).float() * (-math.log(POSITIONAL_SCALE) / d_model))
 
-        positional_encoding_matrix[:, 0::2] = torch.sin(position * div_term[0::2])
-        positional_encoding_matrix[:, 1::2] = torch.cos(position * div_term[1::2])
+        positional_encoding_matrix[:, 0::2] = torch.sin(position * div_term)
+        positional_encoding_matrix[:, 1::2] = torch.cos(position * div_term)
 
         positional_encoding_matrix = positional_encoding_matrix.unsqueeze(0)
         self.register_buffer('positional_encoding_matrix', positional_encoding_matrix)
