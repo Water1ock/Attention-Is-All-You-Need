@@ -2,7 +2,7 @@ import math
 import torch.nn as nn
 
 
-class InputEmbedding(nn.module):
+class InputEmbedding(nn.Module):
     def __init__(self, vocab_size: int, d_model: int):
         super().__init__()
         self.vocab_size = vocab_size
