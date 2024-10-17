@@ -15,12 +15,12 @@ class PositionalEncoding(nn.Module):
         i_indices = torch.arange(0, d_model).float()
         div_term = torch.pow(POSITIONAL_SCALE, 2*i_indices/d_model)
 
-        positional_encoding_matrix[:, 0::2] = torch.sin(position / div_term)
-        positional_encoding_matrix[:, 1::2] = torch.cos(position / div_term)
+        positional_encoding_matrix[:, 0::2] = torch.sin(position / div_term[0::2])
+        positional_encoding_matrix[:, 1::2] = torch.cos(position / div_term[1::2])
 
         positional_encoding_matrix = positional_encoding_matrix.unsqueeze(0)
         self.register_buffer('positional_encoding_matrix', positional_encoding_matrix)
 
     def forward(self, embeddings):
-        embeddings = embeddings + (self.positional_encoding_matrix[:, :embeddings.shape[1], :]).requires_grad(False)
+        embeddings = embeddings + self.positional_encoding_matrix[:, :embeddings.shape[1], :]
         return self.dropout(embeddings)
