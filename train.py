@@ -12,7 +12,7 @@ from model import build_transformer
 from torch.utils.tensorboard import SummaryWriter
 from config import get_weights_file_path, get_config
 import warnings
-import tqdm
+from tqdm import tqdm
 
 
 def get_all_sentences(ds, lang):
