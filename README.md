@@ -1,42 +1,32 @@
 # Attention-Is-All-You-Need
-An implementation of the Transformer Model defined in the "Attention Is All You Need" paper using PyTorch.
 
-![image](https://github.com/user-attachments/assets/d1a869e4-ebac-4ea4-9126-4f2584009427)
-
+An implementation of the Transformer Model defined in the "[Attention Is All You Need](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf)" paper using PyTorch.
+The transformer model has been trained on the "english"-"italian" subset of the Opus Books dataset loaded through the huggingFace library.
 
 # Implementation
 
-Different parts of the transformer model have been implemented in different files of the model_components package.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://github.com/user-attachments/assets/1c7179bf-bcb5-493a-b1bb-20e58f6bc79f" alt="image" width="450" style="display: block; margin: auto;" />
 
-positional_encoding.py
+The different components of the model have been implemented in the model_components package. The transformer model has been defined in model.py and makes use of the different components from model_components.
 
-![image](https://github.com/user-attachments/assets/378d58d8-f560-49c6-8415-f4800cf219ab)
-
-
-multi_head_attention.py
-
-![image](https://github.com/user-attachments/assets/0931a498-df4b-458e-81af-900df109e8ce)
-
-
-add_and_norm.py
-
-![image](https://github.com/user-attachments/assets/2661d8c2-7b7c-4265-8236-eb41aa95e291)
-
-
-feed_forward.py
-
-![image](https://github.com/user-attachments/assets/01d209c4-3761-49d0-9acb-6893c80df19b)
+1. [model.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model.py) -> Implementation of the Transformer model, along with the build_transformer function which is used later for initializing and training the model.
+2. [input_embedding.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model_components/input_embedding.py) -> Implementation of word embeddings, before passing the input to the transformer model.
+3. [positional_encoding.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model_components/positional_encoding.py) -> Implementation of positional encoding, allowing the model to learn about the positions in a flexible way, removing the need for recurrence, and giving support to the attention mechanism.
+4. [multi_head_attention.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model_components/multi_head_attention.py) -> Implementation of the Multi-Head Attention block, making use of the self attention mechanism.
+5. [add_and_norm.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model_components/add_and_norm.py) -> Implementation of Layer Normalization in the transformer model.
+6. [feed_forward.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model_components/feed_forward.py) -> Implementation of the Feed Forward Layer in the transformer model.
+7. [residual_connection.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model_components/residual_connection.py) -> Adding residual connections to different parts of the model as can be witnessed in the figure above. This is done to mitigate the issues of the vanishing gradient problem, and for maintaining original feature information, removing the need for recurrence.
+8. [projection_layer.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model_components/projection_layer.py) -> Used to map the output of the final layer (usually the decoder layer) to the vocabulary size for generating predictions (e.g., for token classification or next-token prediction). This layer transforms the hidden state representation into logits corresponding to the vocabulary.
+9. [encoder.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model_components/encoder.py) -> This part of the model processes the input sequence and generates a set of continuous representations (encodings) that capture the contextual information of the input tokens.
+10. [decoder.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/model_components/decoder.py) -> This part of the model generates the output sequence by attending to both the encoder's output and the previously generated tokens in the target sequence.
 
 
-encoder.py and decoder.py
+# Dataset
 
-![image](https://github.com/user-attachments/assets/0625618a-ad83-449a-9a43-eb5796ddbf07)
-
-# Configurations
-
-Configurations have been defined in config.py A few have been kept the same as the paper, such as d_model = 512
+The [Opus-Books Dataset](https://huggingface.co/datasets/Helsinki-NLP/opus_books) has been used for training the model for 20 epochs. The configurations of the experiment have been defined in the [config.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/config.py) file. 
 
 # TO-DO
 
-1. Training the model.
-2. Evaluating the BLEU score.
+Implement the translate function, which makes use of the trained model to translate input sentences in english, to output sentences in Italian.
+
+Model training started on: 22/10/2024
