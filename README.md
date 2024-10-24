@@ -25,8 +25,9 @@ The different components of the model have been implemented in the model_compone
 
 The [Opus-Books Dataset](https://huggingface.co/datasets/Helsinki-NLP/opus_books) has been used for training the model for 20 epochs. The configurations of the experiment have been defined in the [config.py](https://github.com/Water1ock/Attention-Is-All-You-Need/blob/main/config.py) file. 
 
-# TO-DO
+# Results
 
-Implement the translate function, which makes use of the trained model to translate input sentences in english, to output sentences in Italian.
+Due to computational limitations, the model was trained for 7 epochs instead of the standard 20, achieving a loss value of 3.42. A basic translation of yes has been attached below. The weights have not been uploaded on the repository due to their large sizes.
 
-Model training started on: 22/10/2024
+
+![Screenshot 2024-10-24 165502](https://github.com/user-attachments/assets/6e2d1924-5848-4eb9-8185-c3f0f6257ad0)
